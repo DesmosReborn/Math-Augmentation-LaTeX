@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="./katex.css">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script type="module" src="./katexNoLabels.js"></script>
+    <script type="module" src="./indexNoLabels.js"></script>
+
+    <style id="style">
+    </style>
+</head>
+
+<body>
+    <div class="regular">
+        <label for="inputLatex">Classic LaTeX:</label>
+        <textarea type="text" style="height:100px;width:200px" id="inputLatex" placeholder="Enter Classic LaTeX" onkeyup="updateOutput()">
+            </textarea>
+        <label for="inputFFL">FFL:</label>
+        <textarea type="text" style="height:100px;width:200px" id="inputFFL" placeholder="Enter FFL" onkeyup='updateStyle()'>
+            </textarea>
+
+        <p class="output" id="out1"></p>
+    </div>
+
+    <script> 
+        const latex = document.getElementById('inputLatex');
+        const ffl = document.getElementById('inputFFL');
+        const output = document.getElementById('out1');
+        const styleOutput = document.getElementById('style');
+
+        function updateOutput() {   
+            output.innerHTML = window.katex.renderToString(latex.value);
+        }
+
+        function updateStyle() {
+            styleOutput.innerHTML = window.katex.renderToFFL(ffl.value);
+            output.innerHTML = window.katex.renderToString(latex.value);
+        }
+    </script>
+</body>
+
+</html>
